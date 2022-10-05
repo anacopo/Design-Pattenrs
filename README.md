@@ -1,1 +1,1 @@
-# Design-Pattenrs
+# Design-Patterns
