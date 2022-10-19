@@ -1,26 +1,22 @@
+from Author import Author
+from Chapter import Chapter
+
 class Book:
     def __init__(self, name):
         self.name = name
-        self.paragaph = []
-        self.image = []
-        self.table = []
+        self.chapters = []
 
-    def createNewParagraph(self, paragraph_name):
-        self.paragaph.append(paragraph_name)
+    def addAuthor(self, author_name):
+        self.author = Author(author_name)
 
-    def createNewImage(self, image_name):
-        self.image.append(image_name)
-    
-    def createNewTable(self, table_name):
-        self.table.append(table_name)
+    def createChapter(self, chapter_name):
+        self.chapters.append(Chapter(chapter_name))
+        return len(self.chapters)
+
+    def getChapter(self, index):
+        return self.chapters[index-1]
 
     def print(self):
-        print("Book name: " + self.name)
-        if(len(self.paragaph) != 0):
-            print("Book paragraphes: %s" % self.paragaph)
-        if(len(self.image) != 0):
-            print("Book Images: %s" % self.image)
-        if(len(self.table) != 0):
-            print("Book Tables: %s" % self.table)
-
-
+        print(f"Book: {self.name}")
+        for ch in self.chapters:
+            ch.print()
