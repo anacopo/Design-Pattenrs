@@ -1,4 +1,6 @@
-class Table:
+from Element import Element
+
+class Table(Element):
     def __init__(self, title):
         self.title = title
 
