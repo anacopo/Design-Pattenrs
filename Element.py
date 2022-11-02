@@ -4,4 +4,4 @@ class Element(ABC):
     
     @abstractmethod
     def print():
-        pass;
+        pass
