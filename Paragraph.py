@@ -1,5 +1,6 @@
 from Element import Element
 from AlignStrategy import AlignStrategy
+from Visitor import Visitor
 
 class Paragraph(Element):
     def __init__(self, text: str):
@@ -14,3 +15,6 @@ class Paragraph(Element):
 
     def setAlignment(self, a: AlignStrategy):
         self.textAlignment = a
+
+    def accept(self, visitor: Visitor):
+        visitor.visitParagraph(self)

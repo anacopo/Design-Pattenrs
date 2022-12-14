@@ -1,4 +1,4 @@
-from Book import Book
+#from Book import Book
 from Author import Author
 from Section import Section
 from Paragraph import Paragraph
@@ -7,8 +7,10 @@ from ImageProxy import ImageProxy
 from AlignCenter import AlignCenter
 from AlignLeft import AlignLeft
 from AlignRight import AlignRight
-
-import time
+from Table import Table
+from BookStatistics import BookStatistics
+from TableOfContents import TableOfContents
+from WriteTableOfContents import WriteTableOfContents
 
 if __name__ == '__main__':
     cap1 = Section("Capitolul 1")
@@ -20,42 +22,18 @@ if __name__ == '__main__':
     cap1.add(p3)
     p4 = Paragraph("Paragraph 4")
     cap1.add(p4)
-    print("Printing without Alignment")
-    print()
-    cap1.print()
+    cap1.add(ImageProxy("ImageOne"))
+    cap1.add(Image("ImageTwo"))
+    cap1.add(Paragraph("Some text"))
+    cap1.add(Table("Table 1"))
+    
+    cap2 = Section("Capitolul 2")
 
-    p1.setAlignment(AlignCenter())
-    p2.setAlignment(AlignRight())
-    p3.setAlignment(AlignLeft())
+    stats = BookStatistics()
+    cap1.accept(stats)
+    stats.printStatistics()
 
-    print()
-    print("Printing with alignment")
-    print()
-    cap1.print()
-    # startTime = time.time()
-    # img1 = ImageProxy("Pamela Anderson")
-    # img2 = ImageProxy("Kim K")
-    # img3 = ImageProxy("Kirby Griffin")
-    # playboyS1 = Section("Front Cover")
-    # playboyS1.add(img1)
-    # playboyS2 = Section("Summer Girls")
-    # playboyS2.add(img2)
-    # playboyS2.add(img3)
-    # playboy = Book("Playboy")
-    # playboy.addContent(playboyS1)
-    # playboy.addContent(playboyS2)
-    # endTime = time.time()
-
-    # print(f"Creation of the content took {endTime-startTime} milliseconds")
-
-    # startTime = time.time()
-    # playboyS1.print()
-    # endTime = time.time()
-
-    # print(f"Printing of the section 1 took {endTime-startTime} milliseconds")
-
-    # startTime = time.time()
-    # playboyS1.print()
-    # endTime = time.time()
-
-    # print(f"Printing again section 1 took {endTime-startTime} milliseconds")
+    toc = WriteTableOfContents()
+    cap1.accept(toc)
+    tableOfContents = TableOfContents(toc.getToc())
+    tableOfContents.print()

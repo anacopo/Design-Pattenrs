@@ -1,5 +1,6 @@
 
 from Element import Element
+from Visitor import Visitor
 
 
 class TableOfContents(Element):
@@ -8,3 +9,6 @@ class TableOfContents(Element):
 
     def print(self):
         print(f"Table of contents: {self.something}")
+
+    def accept(self, visitor: Visitor):
+        visitor.visitTableOfContents(self)

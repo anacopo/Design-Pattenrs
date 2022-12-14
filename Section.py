@@ -1,4 +1,5 @@
 from Element import Element
+from Visitor import Visitor
 
 
 class Section(Element):
@@ -19,3 +20,8 @@ class Section(Element):
         print(self.title)
         for child in self.children:
              child.print()
+
+    def accept(self, visitor: Visitor):
+        visitor.visitSection(self)
+        for ch in self.children:
+            ch.accept(visitor)

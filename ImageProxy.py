@@ -1,5 +1,6 @@
 from Element import Element
 from Image import Image
+from Visitor import Visitor
 
 class ImageProxy(Element):
     def __init__(self, url: str):
@@ -14,3 +15,7 @@ class ImageProxy(Element):
     def print(self):
         self.loadImage()
         self.realImage.print()
+
+    def accept(self, visitor: Visitor):
+        visitor.visitImageProxy(self)
+        
